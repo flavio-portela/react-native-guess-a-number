@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, StyleSheet } from "react-native";
+import { TextInput, StyleSheet, Platform } from "react-native";
 
 const Input = ({ style, ...props }) => {
   return <TextInput style={[styles.input, style]} {...props} />;
@@ -11,7 +11,11 @@ const styles = StyleSheet.create({
     borderBottomColor: "grey",
     borderBottomWidth: 1,
     marginVertical: 10,
-    overlayColor: 'red'
+    ...Platform.select({
+      web: {
+        outlineWidth: 0,
+      },
+    }),
   },
 });
 
